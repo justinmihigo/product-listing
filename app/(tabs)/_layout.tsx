@@ -13,7 +13,7 @@ export default function Layout(){
         return null;
     }
     return(
-        <Counter>
+    
         <Tabs screenOptions={{headerShown:false, tabBarActiveTintColor:'#1E90FF'}}>
             {/* <Tabs.Screen name="index" options={{ headerShown: false }} /> */}
             <Tabs.Screen name="index" options={{title:'Home', 
@@ -21,6 +21,6 @@ export default function Layout(){
             <Tabs.Screen name="cart" options={{ title:'Cart', 
             tabBarIcon:({color})=> <SvgXml xml={cart} fill={color} style={{height:30, width:30}}/>}} />
         </Tabs>
-        </Counter>
+        
     )
 }
