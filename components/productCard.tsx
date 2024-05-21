@@ -12,18 +12,17 @@ type ProductCard = {
     rating: number,
 }
 import Clickable from "@/components/clickable";
-import { Float } from 'react-native/Libraries/Types/CodegenTypes';
-import { Count, CounterContext } from './provider';
+
 export default function ProductCard({ id,title, price, image, category, count, description, rating }: ProductCard) {
-    // const [countItems, setCountItems] = useState(0);
+    const [countItems, setCountItems] = useState(0);
     const [visible, setVisible] = useState(false);
-    const {prodId, countItems, setCountItems}= useContext<Partial<Count>>(CounterContext) as any
+    // const {prodId, countItems, setCountItems}= useContext<Partial<Count>>(CounterContext) as any
     console.log(countItems);
     const storeData=async(item:ProductCard)=>{
         setCountItems(countItems + 1);
         try {
             const allData=[];
-            allData.push(Object.assign(item, {countItems:countItems}));
+            allData.push(Object.assign(item, {countItems:countItems+1}));
             const jsonValue = JSON.stringify(allData);
             const existingData=await AsyncStorage.getItem('cart') as any;
             
@@ -62,16 +61,16 @@ export default function ProductCard({ id,title, price, image, category, count, d
                 <View className='flex-1 items-center justify-center bg-[#00000070]' >
                     <View className='bg-white mx-3 justify-center items-center gap-y-5 rounded-xl'>
                         <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
-                        <Text className='font-bold px-4'>{title}</Text>
-                        <Text>ratings:{count}</Text>
-                        <Text className='p-4'>{description}</Text>
-                        <Text className='font-bold px-4'>Price: ${price}</Text>
-                        <View className='w-1/2 py-3 flex-row justify-between items-center'>
+                        <Text className='px-4' style={{fontFamily:"SenMedium"}}>{title}</Text>
+                        <Text className="font-[SenMedium]">ratings:{count}</Text>
+                        <Text className='p-4 font-[SenRegular]'>{description}</Text>
+                        <Text className='px-4 font-[SenBold]'>Price: ${price}</Text>
+                        <View className='w-1/2 py-3 flex-row justify-between items-center font-[SenMedium]'>
                             <Clickable title='Close' onPress={() => setVisible(false)} />
                             {countItems !== 0 ? (
                             <>
                                 <Clickable title='-' onPress={() => setCountItems(countItems - 1)} />
-                                <Text>{countItems}</Text>
+                                <Text className="font-[SenMedium]">{countItems}</Text>
                                 <Clickable title='+' onPress={() => setCountItems(countItems + 1)} />
                             </>
                         ) : (  
@@ -87,17 +86,17 @@ export default function ProductCard({ id,title, price, image, category, count, d
                     <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
                 </View>
                 <View style={{ width: "60%" }}>
-                    <Text className="text-center mb-5 font-bold">{title}</Text>
-                    <View className="flex-row justify-between px-4">
-                        <Text className="text-center mb-2">${price}</Text>
-                        <Text className="text-center">{[category.charAt(0).toUpperCase(), category.slice(1)]}</Text>
+                    <Text className="text-center mb-5 font-[SenBold]">{title}</Text>
+                    <View className="flex-row justify-between px-4 ">
+                        <Text className="text-center mb-2 font-[SenMedium]">${price}</Text>
+                        <Text className="text-center font-[SenRegular]">{[category.charAt(0).toUpperCase(), category.slice(1)]}</Text>
                     </View>
                     <View className="flex-row justify-between px-3 items-center">
-                        <Text className="text-center mb-2">ratings:{count}</Text>
+                        <Text className="text-center mb-2 font-[SenRegular]">ratings:{count}</Text>
                         {countItems !== 0 ? (
                             <>
                                 <Clickable title='-' onPress={() => setCountItems(countItems - 1)} />
-                                <Text>{countItems}</Text>
+                                <Text className='font-[SenMedium]'>{countItems}</Text>
                                 <Clickable title='+' onPress={() => setCountItems(countItems + 1)} />
                             </>
                         ) : (  

@@ -19,10 +19,13 @@ export default function Cart(){
     }, []);
     return(
         <View>
-            <Text>Cart</Text>
+             <View>
+                <Text className="text-xl mt-10 ml-10 mb-2 font-[SenBold]">Cart</Text>
+            </View>
             <ScrollView>
                 {product && JSON.parse(product).map((item:any, index:number) =>{
                     return(
+                        
                         <ProductCard
                         key={index}
                         id={item.id}
@@ -34,6 +37,7 @@ export default function Cart(){
                         count={item.count}
                         description={item.description}
                         />
+                        
                     )
                 })}
             </ScrollView>
