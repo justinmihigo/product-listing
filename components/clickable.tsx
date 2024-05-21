@@ -7,10 +7,10 @@ interface Click{
 export default function Clickable({title,color, onPress}:Click) {
     return(
     <TouchableOpacity
-    className="bg-orange-300 p-2 rounded-xl"
+    className="bg-orange-300 p-2 rounded-xl ml-2"
     onPress={onPress}
   >
-    <Text>{title}</Text>
+    <Text className="font-[SenMedium]">{title}</Text>
   </TouchableOpacity>
     )
 }

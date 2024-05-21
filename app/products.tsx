@@ -76,20 +76,20 @@ export default function Products() {
     }, [])
     return (
         <SafeAreaView>
-            <TouchableOpacity onPress={() => router.push('/cart')}>
-                <Text className="text-xl mt-10 ml-10 mb-2">Products</Text>
-            </TouchableOpacity>
+            <View>
+                <Text className="text-xl mt-10 ml-10 mb-2 font-[SenBold]" >Products</Text>
+            </View>
             <View className="flex-row gap-x-1 mb-4 mx-0 mr-1">
                 <ScrollView className="flex-row gap-x-6" horizontal={true} showsHorizontalScrollIndicator={false}>
                     <TouchableOpacity className={`${selectedCategory == 'All' ? 'bg-orange-300' : ''} p-2 rounded-xl `} onPress={() => setSelectedCategory('All')}>
-                        <Text>All</Text>
+                        <Text className="font-[SenMedium]">All</Text>
                     </TouchableOpacity>
                     {productsCategory.map((product: any, index: number) => {
                         return (
                             <TouchableOpacity key={index}
                                 className={`${selectedCategory == product ? 'bg-orange-300' : ''}  p-2 rounded-xl flex justify-center`}
                                 onPress={() => setSelectedCategory(product)}>
-                                <Text>{product}</Text>
+                                <Text className="font-[SenMedium]">{product}</Text>
                             </TouchableOpacity>
                         )
                     })}
